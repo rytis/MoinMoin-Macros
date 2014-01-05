@@ -1,0 +1,14 @@
+{% if status %}
+<table>
+    <tr><th colspan=2>Status</th></tr>
+    {% for k, v in status['STATUS'][0].iteritems() %}
+        <tr><td>{{ k }}</td><td>{{ v }}</td></tr>
+    {% endfor %}
+    <tr><th colspan=2>Summary</th></tr>
+    {% for k, v in status['SUMMARY'][0].iteritems() %}
+        <tr><td>{{ k }}</td><td>{{ v }}</td></tr>
+    {% endfor %}
+</table>
+{% else %}
+No data available from cgiminer
+{% endif %}

@@ -1,0 +1,31 @@
+{% if train_data %}
+    <table>
+        <tr>
+            <th>Scheduled time</th>
+            <th>Final destination</th>
+            <th>Status</th>
+            <th>Time at destination</th>
+        </tr>
+        {% if train_data.trains %}
+            {% for train in train_data.trains %}
+            <tr>
+                <td>{{ train.1 }}</td>
+                <td>{{ train.2 }}</td>
+                <td>{{ train.3 }}</td>
+                <td>{{ train.6 }}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan=4>No more trains scheduled</td>
+        </tr>
+        {% endif %}
+        {% if train_data.updates %}
+            {% for message in train_data.updates %}
+            <tr>
+                <td colspan=4>{{ message.text|safe }}</td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+    </table>
+{% endif %}

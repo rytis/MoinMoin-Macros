@@ -1,0 +1,12 @@
+<table>
+    <tr><th colspan=2>Account info</th></tr>
+    {% for k, v in status.data.user.iteritems() %}
+        <tr><td>{{ k }}</td><td>{{ v }}</td></tr>
+    {% endfor %}
+    {% for worker in status.workers %}
+    <tr><th colspan=2>Worker info</th></tr>
+        {% for k, v in worker.iteritems() %}
+            <tr><td>{{ k }}</td><td>{{ v }}</td></tr>
+        {% endfor %}
+    {% endfor %}
+</table>

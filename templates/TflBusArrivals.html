@@ -1,0 +1,27 @@
+<table>
+    <tr>
+        <th>Route</th>
+        <th>Destination</th>
+        <th>Scheduled time</th>
+        <th>Waiting time</th>
+    </tr>
+    {% if prediction_messages %}
+        {% for pm in prediction_messages %}
+        <tr>
+            <td><a href="http://www.tfl.gov.uk/tfl/gettingaround/maps/buses/tfl-bus-map/text/routeinfo.aspx?r={{ pm.LineID }}" target="_blank">{{ pm.LineID }}</a></td>
+            <td>{{ pm.DestinationName }}</td>
+            <td>{{ pm.EstimatedTime }}</td>
+            <td>{{ pm.estimated_wait_time }}</td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <td colspan=4>No scheduled busses</td>
+    {% endif %}
+    {% if service_messages %}
+        {% for sm in service_messages %}
+        <tr>
+            <td colspan=4>{{ sm.MessageText }}</td>
+        </tr>
+        {% endfor %}
+    {% endif %}
+</table>

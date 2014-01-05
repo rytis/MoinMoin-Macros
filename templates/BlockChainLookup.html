@@ -1,0 +1,17 @@
+<table>
+    <tr><th>Address</th><th>Balance (BTC)</th><th>Balance (currency)</th><tr>
+    <tr>
+        <td>{{ addr_info.address }}</td>
+        <td>{{ addr_info.balance }}</td>
+        <td>{{ addr_info.balance_exch }}</td>
+    </tr>
+    <tr><th colspan=3>Transactions (last 10)</th></tr>
+    <tr><th>Date</th><th>Value (BTC)</th><th>Value (currency)</th></tr>
+    {% for tx in addr_info.transactions[:10] %}
+        <tr>
+            <td>{{ tx.date }}</td>
+            <td>{{ "%f"|format(tx.value) }}</td>
+            <td>{{ "%f"|format(tx.value_exch) }}</td>
+        </tr>
+    {% endfor %}
+</table>
