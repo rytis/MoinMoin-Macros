@@ -1,0 +1,48 @@
+<table>
+    <tr>
+        <th></th>
+        <th>Feels like</th>
+        <th>Temperature</th>
+        <th>Wind speed<br/>(km/h)</th>
+        <th>Wind gust<br/>(km/h)</th>
+        <th>Precipitation<br/>probability</th>
+        <th>Weather type</th>
+    </tr>
+    {% for record in forecast_data %}
+        <tr>
+            <th colspan=7 style="background-color: #ddd"><center>{{ record.date }}</center></th>
+        </tr>
+        {% for data in record.data %}
+            <tr>
+                <td style="background-color: #eee">
+                    {% if data.part_of_day == 'Day' %}
+                        &#9788;
+                    {% elif data.part_of_day == 'Night' %}
+                        &#9789;
+                    {% else %}
+                        {{ data.part_of_day }}
+                    {% endif %}
+                </td>
+                <td>{{ data.feels_like_temp }} &deg;C</td>
+                <td>{{ data.temp }} &deg;C</td>
+                <td>{{ data.wind_speed }}</td>
+                <td>{{ data.wind_gust }}</td>
+                <td>{{ data.precip_probability }}%</td>
+                <td>
+                    {% if data.weather_type_id in ['9', '10', '11', '12', '13', '14', '15', '28', '29'] %}
+                        &#9730;
+                    {% elif data.weather_type_id in ['2', '3', '5', '6', '7', '8'] %}
+                        &#9729;
+                    {% elif data.weather_type_id in ['16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27'] %}
+                        &#10052;
+                    {% elif data.weather_type_id in ['1'] %}
+                        &#9728;
+                    {% elif data.weather_type_id in ['0'] %}
+                        &#10036;
+                    {% endif %}
+                    {{ data.weather_type }}
+                </td>
+            </tr>
+        {% endfor %}
+    {% endfor %}
+</table>
