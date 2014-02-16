@@ -76,9 +76,9 @@ def extract_5day_data(full_site_data):
         rec = DailyForecast(date=day_data['value'][:-1], data=[])
         for i in range(2):
             data = DailyForecastRecord(part_of_day=day_data['Rep'][i]['$'],
-                                       feels_like_temp=get_multi_key(day_data['Rep'][i], ['FDm', 'FNm']),
-                                       temp=get_multi_key(day_data['Rep'][i], ['Dm', 'Nm']),
-                                       precip_probability=get_multi_key(day_data['Rep'][i], ['PPd', 'PPn']),
+                                       feels_like_temp=int(get_multi_key(day_data['Rep'][i], ['FDm', 'FNm'])),
+                                       temp=int(get_multi_key(day_data['Rep'][i], ['Dm', 'Nm'])),
+                                       precip_probability=int(get_multi_key(day_data['Rep'][i], ['PPd', 'PPn'])),
                                        weather_type=WEATHER_TYPE[day_data['Rep'][i]['W']],
                                        weather_type_id=day_data['Rep'][i]['W'],
                                        wind_gust=int(get_multi_key(day_data['Rep'][i], ['Gn', 'Gm'])) * 1.6,

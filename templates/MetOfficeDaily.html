@@ -24,10 +24,10 @@
                     {% endif %}
                 </td>
                 <td>{{ data.feels_like_temp }} &deg;C</td>
-                <td>{{ data.temp }} &deg;C</td>
-                <td>{{ data.wind_speed }}</td>
-                <td>{{ data.wind_gust }}</td>
-                <td>{{ data.precip_probability }}%</td>
+                <td>{{ data.temp }} &deg;C {% if (data.temp < -5) or (data.temp > 35) %} &#9888;{% endif %}</td>
+                <td>{{ data.wind_speed }}{% if data.wind_speed > 50 %} &#9888;{% endif %}</td>
+                <td>{{ data.wind_gust }}{% if data.wind_gust > 100 %} &#9888;{% endif %}</td>
+                <td>{{ data.precip_probability }}%{% if data.precip_probability > 80 %} &#9888;{% endif %}</td>
                 <td>
                     {% if data.weather_type_id in ['9', '10', '11', '12', '13', '14', '15', '28', '29'] %}
                         &#9730;
